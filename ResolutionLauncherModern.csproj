@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    
+    <!-- Optimization for lightweight performance -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <TrimMode>partial</TrimMode>
+    <!-- Compression only works with self-contained apps -->
+    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+    
+    <!-- Remove unnecessary features -->
+    <UseWindowsForms>false</UseWindowsForms>
+    <EnableDefaultItems>true</EnableDefaultItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    
+    <!-- Suppress common warnings -->
+    <NoWarn>$(NoWarn);CS8618;CS8625;CS8604;CS8602;IL3000;CA1416</NoWarn>
+  </PropertyGroup>
+
+</Project>

@@ -1,29 +1,22 @@
-# Resolution Launcher
+# Resolution Launcher Modern
 
-A lightweight Windows application that allows you to launch games and applications at specific resolutions, with automatic resolution restoration when the application exits. Now with full UWP/Store app support!
+A lightweight, beautifully designed Windows application that allows you to launch games and applications at specific resolutions, with automatic resolution restoration when the application exits.
 
 ## Directory Structure
 
-- `ResolutionLauncher_Simple.cs` - Complete source code in a single file
-- `bin/ResolutionLauncher.exe` - Compiled executable (~24KB)
-- `build.bat` - Build script to compile the application
-- `README.md` - This detailed documentation
-- `README.txt` - Simple text documentation
-- `USAGE.md` - User guide with detailed instructions
-- `PROJECT_SUMMARY.md` - Technical overview of the project
-- `FINAL_IMPROVEMENTS.md` - Summary of final enhancements
-- `FIXES_APPLIED.md` - Log of fixes and improvements
+- `*.xaml`, `*.cs`, `*.csproj` - Modern WPF application source code
+- `build-release.bat` - Optimized build script  
+- `README.md` - This documentation
 
 ## Features
 
+- **Modern UI**: Clean, Windows 11-inspired design with Mica effects and system accent colors
 - **Dual App Support**: Launch both desktop applications (.exe, .lnk) and UWP/Store applications
-- **UWP Game Support**: Special support for popular UWP games like Minecraft Bedrock Edition
-- **Resolution Selection**: Choose from available display resolutions
-- **Direct Launch**: Launch applications immediately with the selected resolution
-- **Shortcut Creation**: Create desktop shortcuts that automatically launch apps at specific resolutions
-- **Automatic Reversion**: Automatically restores your original resolution when applications exit
-- **Modern UI**: Clean, modern interface with intuitive controls
-- **Lightweight**: Minimal performance impact on your system
+- **Smart Resolution Management**: Automatically detects and restores your original resolution
+- **Desktop Shortcuts**: Create clickable shortcuts for instant game launching
+- **Lightweight**: Optimized for minimal performance impact while gaming
+- **System Integration**: Uses Windows accent colors and proper DPI scaling
+- **Curated Resolutions**: Practical gaming resolutions (4K, 1440p, 1080p, etc.)
 
 ## UWP Application Support
 
