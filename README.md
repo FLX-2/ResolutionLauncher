@@ -1,4 +1,4 @@
-# Resolution Launcher Modern
+# Resolution Launcher
 
 A lightweight, beautifully designed Windows application that allows you to launch games and applications at specific resolutions, with automatic resolution restoration when the application exits.
 
@@ -70,7 +70,7 @@ A lightweight, beautifully designed Windows application that allows you to launc
 
 Simply run the included build script:
 ```batch
-build.bat
+build-release.bat
 ```
 
 Or compile manually:
