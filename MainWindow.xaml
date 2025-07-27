@@ -14,7 +14,7 @@
 
     <Border x:Name="MainBorder" Background="#FF2D2D2D" BorderBrush="#1AFFFFFF" BorderThickness="1">
         <Border.Effect>
-            <DropShadowEffect Color="Black" Direction="270" ShadowDepth="6" Opacity="0.3" BlurRadius="12"/>
+            <DropShadowEffect Color="Black" Direction="270" ShadowDepth="8" Opacity="0.3" BlurRadius="16"/>
         </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
