@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolution Launcher - Windows 11</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: transparent;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .launcher-window {
+            width: 340px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+            overflow: hidden;
+        }
+
+        .title-bar {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.0578);
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .window-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .close { background: #ff5f57; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #28ca42; }
+
+        .content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mode-toggle {
+            display: flex;
+            background: rgba(0, 0, 0, 0.0241);
+            border-radius: 4px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            border-radius: 2px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #5c5c5c;
+        }
+
+        .mode-btn.active {
+            background: #0078d4;
+            color: white;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .input-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #5c5c5c;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.0578);
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #000;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #0078d4;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .input-field::placeholder {
+            color: #9d9d9d;
+        }
+
+        .resolution-select {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .resolution-dropdown {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.0578);
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .resolution-dropdown option {
+            background: white;
+            color: #000;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(0, 0, 0, 0.0578);
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .action-btn.secondary {
+            background: rgba(0, 0, 0, 0.0241);
+            color: #000;
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(0, 0, 0, 0.0373);
+        }
+
+        .action-btn.primary {
+            background: #0078d4;
+            color: white;
+            border-color: #0078d4;
+        }
+
+        .action-btn.primary:hover {
+            background: #005a9e;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .launcher-window {
+                background: rgba(32, 32, 32, 0.85);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .title-bar {
+                background: rgba(32, 32, 32, 0.5);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+
+            .input-field, .resolution-dropdown {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+
+            .input-label {
+                color: #ccc;
+            }
+
+            .resolution-dropdown option {
+                background: #202020;
+                color: #fff;
+            }
+
+            .action-btn.secondary {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+            }
+
+            .action-btn.secondary:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="launcher-window">
+        <div class="title-bar">
+            <span>Resolution Launcher</span>
+            <div class="window-controls">
+                <button class="window-btn minimize"></button>
+                <button class="window-btn maximize"></button>
+                <button class="window-btn close"></button>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Mode Toggle -->
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="exe">EXE/LNK</button>
+                <button class="mode-btn" data-mode="uwp">UWP</button>
+            </div>
+
+            <!-- EXE/LNK Target -->
+            <div class="input-group exe-target">
+                <label class="input-label">🎯 Target</label>
+                <input type="text" class="input-field" placeholder="Select application..." value="">
+            </div>
+
+            <!-- UWP Target -->
+            <div class="input-group uwp-target hidden">
+                <label class="input-label">🎯 UWP Package</label>
+                <input type="text" class="input-field" placeholder="microsoft.minecraftuwp://" value="">
+            </div>
+
+            <!-- Resolution -->
+            <div class="input-group">
+                <label class="input-label">🖥️ Resolution</label>
+                <select class="resolution-dropdown">
+                    <option>1920×1080</option>
+                    <option>2560×1440</option>
+                    <option>3840×2160</option>
+                    <option>1600×900</option>
+                    <option>1280×720</option>
+                    <option>Custom...</option>
+                </select>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-row">
+                <button class="action-btn secondary">🔗 Shortcut</button>
+                <button class="action-btn primary">🚀 Launch</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mode switching
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        const exeTarget = document.querySelector('.exe-target');
+        const uwpTarget = document.querySelector('.uwp-target');
+
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                modeBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const mode = this.dataset.mode;
+                if (mode === 'uwp') {
+                    exeTarget.classList.add('hidden');
+                    uwpTarget.classList.remove('hidden');
+                } else {
+                    exeTarget.classList.remove('hidden');
+                    uwpTarget.classList.add('hidden');
+                }
+            });
+        });
+
+        // Launch button
+        document.querySelector('.action-btn.primary').addEventListener('click', function() {
+            this.textContent = '⏳ Launching...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.textContent = '✅ Done!';
+                setTimeout(() => {
+                    this.textContent = '🚀 Launch';
+                    this.disabled = false;
+                }, 1000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
