@@ -12,7 +12,10 @@
         Style="{StaticResource MicaWindowStyle}"
         MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
 
-    <Border x:Name="MainBorder" CornerRadius="8" Background="#FF2D2D2D" BorderBrush="#1AFFFFFF" BorderThickness="1">
+    <Border x:Name="MainBorder" Background="#FF2D2D2D" BorderBrush="#1AFFFFFF" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" Direction="270" ShadowDepth="6" Opacity="0.3" BlurRadius="12"/>
+        </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="36"/>
@@ -20,7 +23,7 @@
             </Grid.RowDefinitions>
 
             <!-- Title Bar -->
-            <Border Grid.Row="0" Background="#1AFFFFFF" CornerRadius="8,8,0,0">
+            <Border Grid.Row="0" Background="#1AFFFFFF">
                 <Grid>
                     <TextBlock Text="Resolution Launcher" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0" FontSize="14" FontWeight="SemiBold"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
