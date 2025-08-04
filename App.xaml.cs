@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
-namespace ResolutionLauncherModern
+namespace ResolutionLauncher
 {
     public partial class App : Application
     {

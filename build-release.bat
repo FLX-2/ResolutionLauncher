@@ -13,7 +13,7 @@ dotnet publish --configuration Release --runtime win-x64 --self-contained false 
 if %ERRORLEVEL% EQU 0 (
     echo.
     echo SUCCESS: Build complete! 
-    echo Optimized executable: Release\ResolutionLauncherModern.exe
+    echo Optimized executable: Release\ResolutionLauncher.exe
     echo File size and performance optimized for gaming use.
 ) else (
     echo.

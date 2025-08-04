@@ -12,7 +12,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Controls;
 
-namespace ResolutionLauncherModern
+namespace ResolutionLauncher
 {
     public struct Resolution
     {
